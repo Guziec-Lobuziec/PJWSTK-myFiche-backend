@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class BoughtFicheSchema {
 	
@@ -20,6 +22,7 @@ public class BoughtFicheSchema {
 	private Integer version;
 	@NotNull
 	@ManyToOne
+	@JsonBackReference
 	private Client client;
 	@NotNull
 	@ManyToOne

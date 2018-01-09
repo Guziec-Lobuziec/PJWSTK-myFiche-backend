@@ -1,6 +1,5 @@
 package myfiche.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +28,7 @@ public abstract class File {
 	@Length(max = 64)
 	private String name;
 	@NotNull
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JsonBackReference
 	private Catalog parent;
 	
