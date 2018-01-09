@@ -11,7 +11,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.hateoas.RelProvider;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
+import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
 
+@EnableHypermediaSupport(type = HypermediaType.HAL)
 @SpringBootApplication
 @ComponentScan("myfiche.*")
 public class Application 
@@ -28,6 +32,11 @@ public class Application
 	public DataSource dataSource() {
 	    return DataSourceBuilder.create().build();
 	}
+    
+    @Bean
+    public RelProvider fileRelProvider() {
+    	return new FileRelProvider();
+    }
     
   //do testów
     @Bean(initMethod="start",destroyMethod="stop")

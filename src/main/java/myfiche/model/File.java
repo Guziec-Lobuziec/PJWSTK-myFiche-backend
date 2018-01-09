@@ -11,11 +11,20 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity
 @Inheritance
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "dtype")
+@JsonSubTypes({
+  @JsonSubTypes.Type(value = Catalog.class, name = "Catalog"),
+  @JsonSubTypes.Type(value = Fiche.class, name = "Fiche")
+})
+@RestResource(path="files")
 public abstract class File {
 	
 	@Id
@@ -27,7 +36,6 @@ public abstract class File {
 	@NotEmpty
 	@Length(max = 64)
 	private String name;
-	@NotNull
 	@ManyToOne
 	@JsonBackReference
 	private Catalog parent;

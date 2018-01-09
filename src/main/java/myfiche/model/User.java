@@ -9,7 +9,7 @@ import javax.persistence.Version;
 
 @Entity
 @Inheritance
-public class User {
+public abstract class User {
 
 	@Id
 	@GeneratedValue(strategy =  GenerationType.AUTO)
