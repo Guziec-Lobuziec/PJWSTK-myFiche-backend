@@ -1,4 +1,4 @@
-package myfiche.restful;
+package myfiche.dao;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;

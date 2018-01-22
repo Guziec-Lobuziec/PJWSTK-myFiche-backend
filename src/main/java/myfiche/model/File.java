@@ -1,5 +1,7 @@
 package myfiche.model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,20 +13,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.rest.core.annotation.RestResource;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity
 @Inheritance
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "dtype")
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = Catalog.class, name = "Catalog"),
-  @JsonSubTypes.Type(value = Fiche.class, name = "Fiche")
-})
-@RestResource(path="files")
+@DiscriminatorColumn(name = "type")
 public abstract class File {
 	
 	@Id
@@ -37,7 +29,43 @@ public abstract class File {
 	@Length(max = 64)
 	private String name;
 	@ManyToOne
-	@JsonBackReference
 	private Catalog parent;
+	@NotNull
+	@NotEmpty
+	@Column(updatable = false, insertable = false)
+	private String type;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Catalog getParent() {
+		return parent;
+	}
+	public void setParent(Catalog parent) {
+		this.parent = parent;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
 	
 }
