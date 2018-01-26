@@ -1,10 +1,11 @@
 package myfiche.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogDTO extends FileDTO {
 	
-	private List<FileOverviewDTO> files;
+	private List<FileOverviewDTO> files = new ArrayList<>();
 
 	public List<FileOverviewDTO> getFiles() {
 		return files;

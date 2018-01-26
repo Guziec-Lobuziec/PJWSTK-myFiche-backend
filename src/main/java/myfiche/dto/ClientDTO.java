@@ -2,7 +2,7 @@ package myfiche.dto;
 
 public class ClientDTO {
 	
-	private String nick;
+	private String nick = "";
 	private CatalogDTO userRootCatalog;
 	
 	public String getNick() {

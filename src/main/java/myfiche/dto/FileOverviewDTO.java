@@ -2,10 +2,10 @@ package myfiche.dto;
 
 public class FileOverviewDTO {
 	
-	private Long id;
-	private Integer version;
-	private String name;
-	private String type;
+	private Long id = new Long(0);
+	private Integer version = new Integer(0);
+	private String name = "";
+	private String type = "";
 	public Long getId() {
 		return id;
 	}

@@ -6,9 +6,9 @@ import myfiche.model.FicheSchema;
 
 public class BoughtFicheSchemaDTO {
 	
-	private Long id;
-	private Integer version;
+	private Long id = new Long(0);
+	private Integer version = new Integer(0);
 	private FicheSchema ficheSchema;
-	private LocalDateTime dateBought;
+	private LocalDateTime dateBought = LocalDateTime.now();
 	
 }
