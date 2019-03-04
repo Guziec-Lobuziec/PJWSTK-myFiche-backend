@@ -29,6 +29,7 @@ public class Application
 	    return DataSourceBuilder.create().build();
 	}
     
+    
   //do testów
     @Bean(initMethod="start",destroyMethod="stop")
     public org.h2.tools.Server h2WebConsonleServer () throws SQLException {

@@ -4,15 +4,24 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Catalog extends File {
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JsonManagedReference
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="parent",
+			fetch=FetchType.LAZY)
 	private List<File> files;
+
+	public List<File> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<File> files) {
+		this.files = files;
+	}
+	
+	
 	
 }
